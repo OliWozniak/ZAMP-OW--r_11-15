@@ -10,3 +10,5 @@ obj/xmlinterp.o
 plugin/obj/Interp4Move.o
 plugin/obj/Interp4Pause.o
 plugin/obj/Interp4Rotate.o
+processed
+program_dzialan.tmp
