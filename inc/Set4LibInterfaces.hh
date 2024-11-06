@@ -13,15 +13,9 @@ private:
 public:
     Set4LibInterfaces(/* args */);
     ~Set4LibInterfaces();
+
+    bool print_command(std::string cmd_name, std::istream& process_instruction);
+    bool load_libraries();
+
 };
-
-Set4LibInterfaces::Set4LibInterfaces(/* args */)
-{
-}
-
-Set4LibInterfaces::~Set4LibInterfaces()
-{
-}
-
-
 #endif

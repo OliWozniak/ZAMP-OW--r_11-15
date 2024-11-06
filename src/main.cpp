@@ -155,21 +155,11 @@ int main(int argc, const char *argv[])
     }
   std::string command;
 
-  std::shared_ptr<LibInterface> Move (new LibInterface());
-  std::shared_ptr<LibInterface> Rotate (new LibInterface());
-  std::shared_ptr<LibInterface> Pause (new LibInterface());
-  std::shared_ptr<LibInterface> Set (new LibInterface());
-
-  Move->load_lib("Move");
-  Rotate->load_lib("Rotate");
-  Pause->load_lib("Pause");
-  Set->load_lib("Set");
-
   Set4LibInterfaces interfaces;
-  interfaces["Move"] = Move;
-  interfaces["Rotate"] = Rotate;
-  interfaces["Pause"] = Pause;
-  interfaces["Set"] = Set;
+
+  if(!interfaces.load_libraries()){
+    return 1;
+  }
 
   while (true) {
     
@@ -177,25 +167,10 @@ int main(int argc, const char *argv[])
       break;
     }
 
-    if (interfaces.find(command) == interfaces.end()) {
-      std::cerr << "!!! Nieznane polecenie: " << command << std::endl;
-      return false;
-    }
-    
-    AbstractInterp4Command *pCmd = interfaces[command].get()->get_cmd();
-    if (!pCmd) {
-      std::cerr << "!!! Blad tworzenia polecenia: " << command << std::endl;
-      return false;
+    if(!interfaces.print_command(command, process_instruction)){
+      return 1;
     }
 
-    if (!pCmd->ReadParams(process_instruction)) {
-      std::cerr << "!!! Blad wczytywania parametrow polecenia: " << command << std::endl;
-      return false;
-    }
-
-    pCmd->PrintCmd();
-
-    delete pCmd;
   }
 
   return 0;

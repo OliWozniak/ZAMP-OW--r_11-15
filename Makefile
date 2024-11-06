@@ -17,17 +17,22 @@ __plugin__:
 CPPFLAGS = -Wall -g -pedantic -std=c++17 -Iinc
 LDFLAGS = -Wall -lxerces-c -ldl  
 
-interp: obj/main.o obj/LibInterface.o obj/xmlinterp.o 
-	g++ -o interp obj/main.o obj/LibInterface.o obj/xmlinterp.o $(LDFLAGS)
+interp: obj/main.o obj/LibInterface.o obj/xmlinterp.o obj/Set4LibInterfaces.o
+	g++ -o interp obj/main.o obj/LibInterface.o obj/xmlinterp.o obj/Set4LibInterfaces.o $(LDFLAGS)
 
 obj/main.o: src/main.cpp inc/AbstractInterp4Command.hh inc/AbstractScene.hh \
-            inc/AbstractComChannel.hh inc/LibInterface.hh inc/xmlinterp.hh
+            inc/AbstractComChannel.hh inc/LibInterface.hh inc/xmlinterp.hh \
+			inc/Set4LibInterfaces.hh 
 	mkdir -p obj  
 	g++ -c ${CPPFLAGS} -o obj/main.o src/main.cpp
 
 obj/LibInterface.o: src/LibInterface.cpp inc/LibInterface.hh  
 	mkdir -p obj  
 	g++ -c ${CPPFLAGS} -o obj/LibInterface.o src/LibInterface.cpp
+
+obj/Set4LibInterfaces.o: src/Set4LibInterfaces.cpp inc/Set4LibInterfaces.hh  
+	mkdir -p obj  
+	g++ -c ${CPPFLAGS} -o obj/Set4LibInterfaces.o src/Set4LibInterfaces.cpp
 
 obj/xmlinterp.o: src/xmlinterp.cpp inc/xmlinterp.hh 
 	mkdir -p obj  
