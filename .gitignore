@@ -12,3 +12,4 @@ plugin/obj/Interp4Pause.o
 plugin/obj/Interp4Rotate.o
 processed
 program_dzialan.tmp
+obj/Set4LibInterfaces.o
