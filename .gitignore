@@ -1,0 +1,12 @@
+plugin/obj/Interp4Set.o
+interp
+libs/libInterp4Move.so
+libs/libInterp4Pause.so
+libs/libInterp4Rotate.so
+libs/libInterp4Set.so
+obj/LibInterface.o
+obj/main.o
+obj/xmlinterp.o
+plugin/obj/Interp4Move.o
+plugin/obj/Interp4Pause.o
+plugin/obj/Interp4Rotate.o
