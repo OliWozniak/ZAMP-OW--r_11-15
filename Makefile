@@ -17,8 +17,8 @@ __plugin__:
 CPPFLAGS = -Wall -g -pedantic -std=c++17 -Iinc
 LDFLAGS = -Wall -lxerces-c -ldl  
 
-interp: obj/main.o obj/LibInterface.o obj/xmlinterp.o obj/Set4LibInterfaces.o
-	g++ -o interp obj/main.o obj/LibInterface.o obj/xmlinterp.o obj/Set4LibInterfaces.o $(LDFLAGS)
+interp: obj/main.o obj/LibInterface.o obj/xmlinterp.o obj/Set4LibInterfaces.o obj/ComChannel.o
+	g++ -o interp obj/main.o obj/LibInterface.o obj/xmlinterp.o obj/Set4LibInterfaces.o obj/ComChannel.o $(LDFLAGS)
 
 obj/main.o: src/main.cpp inc/AbstractInterp4Command.hh inc/AbstractScene.hh \
             inc/AbstractComChannel.hh inc/LibInterface.hh inc/xmlinterp.hh \
@@ -37,6 +37,10 @@ obj/Set4LibInterfaces.o: src/Set4LibInterfaces.cpp inc/Set4LibInterfaces.hh
 obj/xmlinterp.o: src/xmlinterp.cpp inc/xmlinterp.hh 
 	mkdir -p obj  
 	g++ -c ${CPPFLAGS} -o obj/xmlinterp.o src/xmlinterp.cpp
+
+obj/ComChannel.o: src/ComChannel.cpp inc/ComChannel.hh 
+	mkdir -p obj  
+	g++ -c ${CPPFLAGS} -o obj/ComChannel.o src/ComChannel.cpp
 
 
 doc:
