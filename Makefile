@@ -17,8 +17,11 @@ __plugin__:
 CPPFLAGS = -Wall -g -pedantic -std=c++17 -Iinc
 LDFLAGS = -Wall -lxerces-c -ldl  
 
-interp: obj/main.o obj/LibInterface.o obj/xmlinterp.o obj/Set4LibInterfaces.o obj/ComChannel.o
-	g++ -o interp obj/main.o obj/LibInterface.o obj/xmlinterp.o obj/Set4LibInterfaces.o obj/ComChannel.o $(LDFLAGS)
+interp: obj/main.o obj/LibInterface.o obj/xmlinterp.o obj/Scene.o obj/ProgramInterpreter.o\
+ obj/Set4LibInterfaces.o obj/ComChannel.o obj/Cuboid.o obj/Configuration.o
+
+	g++ -o interp obj/main.o obj/LibInterface.o obj/xmlinterp.o obj/Scene.o obj/ProgramInterpreter.o\
+	 obj/Set4LibInterfaces.o obj/ComChannel.o obj/Cuboid.o obj/Configuration.o $(LDFLAGS)
 
 obj/main.o: src/main.cpp inc/AbstractInterp4Command.hh inc/AbstractScene.hh \
             inc/AbstractComChannel.hh inc/LibInterface.hh inc/xmlinterp.hh \
@@ -42,6 +45,21 @@ obj/ComChannel.o: src/ComChannel.cpp inc/ComChannel.hh
 	mkdir -p obj  
 	g++ -c ${CPPFLAGS} -o obj/ComChannel.o src/ComChannel.cpp
 
+obj/Cuboid.o: src/Cuboid.cpp inc/Cuboid.hh 
+	mkdir -p obj  
+	g++ -c ${CPPFLAGS} -o obj/Cuboid.o src/Cuboid.cpp
+
+obj/Configuration.o: src/Configuration.cpp inc/Configuration.hh 
+	mkdir -p obj  
+	g++ -c ${CPPFLAGS} -o obj/Configuration.o src/Configuration.cpp
+
+obj/Scene.o: src/Scene.cpp inc/Scene.hh 
+	mkdir -p obj  
+	g++ -c ${CPPFLAGS} -o obj/Scene.o src/Scene.cpp
+
+obj/ProgramInterpreter.o: src/ProgramInterpreter.cpp inc/ProgramInterpreter.hh 
+	mkdir -p obj  
+	g++ -c ${CPPFLAGS} -o obj/ProgramInterpreter.o src/ProgramInterpreter.cpp
 
 doc:
 	cd dox; make

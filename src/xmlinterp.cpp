@@ -16,6 +16,7 @@ using namespace std;
  */
 XMLInterp4Config::XMLInterp4Config(Configuration &rConfig)
 {
+  _Config = rConfig;
 }
 
 
@@ -37,9 +38,6 @@ void XMLInterp4Config::endDocument()
 {
   cout << "=== Koniec przetwarzania dokumentu XML." << endl;
 }
-
-
-
 
 
 /*!
@@ -95,8 +93,12 @@ void XMLInterp4Config::ProcessCubeAttrs(const xercesc::Attributes  &rAttrs)
 
  XMLSize_t  Index = 0;
  char* sValue_Name    = xercesc::XMLString::transcode(rAttrs.getValue(Index));
- char* sValue_Scale = xercesc::XMLString::transcode(rAttrs.getValue(1));
- char* sValue_RGB     = xercesc::XMLString::transcode(rAttrs.getValue(2));
+ char* sValue_Shift = xercesc::XMLString::transcode(rAttrs.getValue(1));
+ char* sValue_Scale     = xercesc::XMLString::transcode(rAttrs.getValue(2));
+ char* sValue_RotXYZ     = xercesc::XMLString::transcode(rAttrs.getValue(3));
+ char* sValue_Trans     = xercesc::XMLString::transcode(rAttrs.getValue(4));
+ char* sValue_RGB     = xercesc::XMLString::transcode(rAttrs.getValue(5));
+
 
 
  //-----------------------------------------------------------------------------
@@ -120,18 +122,44 @@ void XMLInterp4Config::ProcessCubeAttrs(const xercesc::Attributes  &rAttrs)
  //
  // IStrm >> Scale;
  //
- istringstream   IStrm;
- 
- IStrm.str(sValue_Scale);
- double  Sx,Sy,Sz;
 
- IStrm >> Sx >> Sy >> Sz;
- if (IStrm.fail()) {
-     cerr << " Blad!!!" << endl;
- } else {
-     cout << " Czytanie wartosci OK!!!" << endl;
-     cout << "     " << Sx << "  " << Sy << "  " << Sz << endl;
- }
+ /*Cuboid(std::string name,\
+    Vector3D shift,\
+    Vector3D scale,\
+    Vector3D rotation,\
+    Vector3D transition,\
+    Vector3D color);*/
+
+  std::istringstream   IStrm;
+
+  std::string name;
+  Vector3D shift;
+  Vector3D scale;
+  Vector3D rotation;
+  Vector3D transition;
+  Vector3D color;
+
+  IStrm.str(sValue_Name);
+  IStrm >> name;
+
+  IStrm.str(sValue_Shift);
+  IStrm >> shift; 
+
+  IStrm.str(sValue_Scale);
+  IStrm >> scale;
+
+  IStrm.str(sValue_RotXYZ);
+  IStrm >> rotation;
+
+  IStrm.str(sValue_Trans);
+  IStrm >> transition;
+
+  IStrm.str(sValue_RGB);
+  IStrm >> color;
+
+  std::shared_ptr<Cuboid> obj(new Cuboid(name, shift, scale, rotation, transition, color));
+
+  (*this)._Config.addObject(obj);
 
  // Tu trzeba wstawić odpowiednio własny kod ...
 

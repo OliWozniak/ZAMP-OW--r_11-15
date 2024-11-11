@@ -14,3 +14,8 @@ processed
 program_dzialan.tmp
 obj/Set4LibInterfaces.o
 obj/ComChannel.o
+obj/Scene.o
+obj/Cuboid.o
+obj/Configuration.o
+obj/ProgramInterpreter.o
+.vscode/settings.json

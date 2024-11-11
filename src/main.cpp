@@ -21,6 +21,7 @@
 #include "xmlinterp.hh"
 #include "AbstractInterp4Command.hh"
 #include "LibInterface.hh"
+#include "ProgramInterpreter.hh"
 
 
 #include <xercesc/sax2/SAX2XMLReader.hpp>
@@ -44,7 +45,7 @@ using namespace xercesc;
  * \retval false - w przeciwnym przypadku.
  */
 
-bool ReadFile(const char* sFileName, Configuration &rConfig)
+/*bool ReadFile(const char* sFileName, Configuration &rConfig)
 {
    try {
             XMLPlatformUtils::Initialize();
@@ -114,7 +115,7 @@ bool ReadFile(const char* sFileName, Configuration &rConfig)
    delete pParser;
    delete pHandler;
    return true;
-}
+}*/
 
 
 void _macro(std::string filename)
@@ -129,6 +130,8 @@ int main(int argc, const char *argv[])
   std::string nazwa_program_dzialan;
   std::string nazwa_plik_wykonawczy;
   std::string nazwa_config;
+
+  ProgramInterpreter Interp;
 
   Configuration   Config;
 
@@ -161,7 +164,7 @@ int main(int argc, const char *argv[])
 
   std::cout << nazwa_plik_wykonawczy << std::endl;
 
-  if (!ReadFile(nazwa_config.c_str(), Config)) return 1;
+  if (!Interp.Read_XML_Config(nazwa_config.c_str())) return 1;
 
   ifstream process_instruction(nazwa_plik_wykonawczy);
   if (!process_instruction.is_open()) {

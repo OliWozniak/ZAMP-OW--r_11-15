@@ -432,6 +432,15 @@ std::ostream & operator << ( std::ostream &OStrm, const geom::Vector<Type,Size> 
    return OStrm;
 }
 
+template<typename Type, unsigned int Size>
+std::istream& operator>>(std::istream& StrmWe, geom::Vector<Type,Size>& vec){
+    for (uint i=0;i<Size;++i){
+        StrmWe >> vec[i];
+        if (StrmWe.fail()) return StrmWe; 
+    }
+    return StrmWe;
+}
+
 
 
 #endif
