@@ -1,6 +1,6 @@
 #include "ProgramInterpreter.hh"
 
-ProgramInterpreter::ProgramInterpreter(/* args */)
+ProgramInterpreter::ProgramInterpreter()
 {
 }
 
