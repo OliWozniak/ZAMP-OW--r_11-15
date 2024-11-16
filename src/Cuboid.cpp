@@ -57,3 +57,16 @@ void Cuboid::SetName(const char* sName){
 const std::string & Cuboid::GetName() const{
     return (*this)._Name;
 }
+
+std::string Cuboid::GetParams() const {
+    std::ostringstream oss;
+
+    oss << "Name=" << _Name << " ";
+    oss << "Shift=" << _Shift << " ";
+    oss << "Scale=" << _Scale << " ";
+    oss << "RotXYZ_deg=" << _Rotation << " ";
+    oss << "Trans_m=" << _Transition << " ";
+    oss << "RGB=" << _Color;
+
+    return oss.str();
+}

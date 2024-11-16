@@ -6,6 +6,8 @@
 #include "ComChannel.hh"
 #include "Configuration.hh"
 #include "xmlinterp.hh"
+#include "vector"
+#include <fstream>
 
 
 #include <xercesc/sax2/SAX2XMLReader.hpp>
@@ -24,7 +26,7 @@ public:
     ProgramInterpreter(/* args */);
     ~ProgramInterpreter();
 
-    bool Read_XML_Config(const char* FileName_Conf);
+    bool Read_XML_Config(const char* FileName_Conf, Configuration &rConfig);
     bool ExecProgram(const char* FileName_Prog);
 };
 

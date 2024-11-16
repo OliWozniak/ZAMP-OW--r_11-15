@@ -4,19 +4,19 @@ void Configuration::addObject(std::shared_ptr<Cuboid> obj){
     (*this)._ObjList.push_back(obj);
 }
 
-void Configuration::addLib(std::shared_ptr<std::string> lib){
+void Configuration::addLib(std::string lib){
     (*this)._LibList.push_back(lib);
 }
 
 std::shared_ptr<Cuboid> Configuration::popObject(){
-    std::shared_ptr<Cuboid> popped = (*this)._ObjList.back();
-    (*this)._ObjList.pop_back();
+    std::shared_ptr<Cuboid> popped = (*this)._ObjList.front();
+    (*this)._ObjList.pop_front();
     return popped;
 }
 
-std::shared_ptr<std::string> Configuration::popLib(){
-    std::shared_ptr<std::string> popped= (*this)._LibList.back();
-    (*this)._LibList.pop_back();
+std::string Configuration::popLib(){
+    std::string popped= (*this)._LibList.front();
+    (*this)._LibList.pop_front();
     return  popped;
 }
 

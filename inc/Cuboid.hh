@@ -2,6 +2,7 @@
 #define CUBOID_HH
 
 #include "AbstractMobileObj.hh"
+#include <sstream>
 
 class Cuboid : public AbstractMobileObj
 {
@@ -32,6 +33,7 @@ public:
     void SetPosition_m(const Vector3D &rPos);
     void SetName(const char* sName);
     const std::string & GetName() const;
+    std::string GetParams() const;
 };
 
 

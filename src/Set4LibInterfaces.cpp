@@ -65,3 +65,14 @@ bool Set4LibInterfaces::load_libraries(){
 
   return true;
 }
+
+bool Set4LibInterfaces::load_library(std::string lib_name){
+  std::shared_ptr<LibInterface> new_lib (new LibInterface());
+  if(new_lib->load_lib(lib_name.c_str())!=0){
+    return false;
+  }
+  
+  (*this)[lib_name.c_str()] = new_lib;
+
+  return true;
+}

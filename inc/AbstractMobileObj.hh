@@ -101,6 +101,9 @@
         *  \return Nazwa obiektu.
         */
         virtual const std::string & GetName() const = 0;
+
+        virtual std::string GetParams() const = 0;
+
     };
 
 
