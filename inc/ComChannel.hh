@@ -15,9 +15,8 @@ class ComChannel// : AbstractComChannel
 {
 private:
     int _Socket4Sending;
-
 public:
-    ComChannel(/* args */);
+    ComChannel();
     ~ComChannel();
 
     bool open_connection();

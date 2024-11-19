@@ -75,9 +75,6 @@ void XMLInterp4Config::ProcessLibAttrs(const xercesc::Attributes  &rAttrs)
   cout << "  Nazwa funkcji: " << sLibName << endl;
 
   (*this)._Config.addLib(sLibName);
-
-    std::cout << "Liczba bibliotek w Config:\t" << _Config.sizeLib() << std::endl;
-
     
  xercesc::XMLString::release(&sParamName);
  xercesc::XMLString::release(&cLibName);
@@ -102,11 +99,11 @@ void XMLInterp4Config::ProcessCubeAttrs(const xercesc::Attributes  &rAttrs)
   */
  int Index=0;
  char* sValue_Name    = xercesc::XMLString::transcode(rAttrs.getValue(Index));
- char* sValue_RGB = xercesc::XMLString::transcode(rAttrs.getValue(1));
+ char* sValue_RGB = xercesc::XMLString::transcode(rAttrs.getValue(5));
  char* sValue_Scale     = xercesc::XMLString::transcode(rAttrs.getValue(2));
- char* sValue_Shift     = xercesc::XMLString::transcode(rAttrs.getValue(3));
- char* sValue_RotXYZ_deg     = xercesc::XMLString::transcode(rAttrs.getValue(4));
- char* sValue_Trans_m     = xercesc::XMLString::transcode(rAttrs.getValue(5));
+ char* sValue_Shift     = xercesc::XMLString::transcode(rAttrs.getValue(1));
+ char* sValue_RotXYZ_deg     = xercesc::XMLString::transcode(rAttrs.getValue(3));
+ char* sValue_Trans_m     = xercesc::XMLString::transcode(rAttrs.getValue(4));
 
 
 
