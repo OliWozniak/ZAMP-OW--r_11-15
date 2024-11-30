@@ -3,8 +3,17 @@
 ComChannel::ComChannel(/* args */){}
 
 ComChannel::~ComChannel(){
-    (*this).send("Close");
 }
+
+// void ComChannel::Init(int Socket){
+//   _Socket4Sending = Socket;
+// }
+
+// int ComChannel::GetSocket() const{
+//   return _Socket4Sending;
+// }
+
+// std::mutex &ComChannel::UseGuard(){return _Access;}
 
 /*!
  * Otwiera połączenie sieciowe
@@ -34,6 +43,7 @@ bool ComChannel::open_connection()
      std::cerr << "*** Brak mozliwosci polaczenia do portu: " << PORT << std::endl;
      return false;
    }
+  (*this).send("Clear \n");
   return true;
 }
 
@@ -49,6 +59,7 @@ bool ComChannel::open_connection()
  */
 int ComChannel::send(const char *sMesg)
 {
+  std::cout << sMesg<< std::endl;
   ssize_t  IlWyslanych;
   ssize_t  IlDoWyslania = (ssize_t) strlen(sMesg);
 
@@ -57,7 +68,15 @@ int ComChannel::send(const char *sMesg)
     sMesg += IlWyslanych;
   }
   if (IlWyslanych < 0) {
-    std::cerr << "*** Blad przeslania napisu." << std::endl;
+    std::cerr << "*** Blad przeslania napisu. " << IlWyslanych << std::endl;
   }
   return 0;
+}    
+
+void ComChannel::LockAccess(){
+  _Access.lock();
+}
+
+void ComChannel::UnlockAccess(){
+  _Access.unlock();
 }

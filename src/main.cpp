@@ -66,8 +66,12 @@ int main(int argc, const char *argv[])
 
   std::cout << nazwa_plik_wykonawczy << std::endl;
 
-  if (!Interp.Read_XML_Config(nazwa_config.c_str(), Config)) return 1;
+  if (!Interp.Read_XML_Config(nazwa_config.c_str())) return 1;
+
+  std::cout << "\n\n\n\nZakończono wgrywanie XML\n\n\n\n";
   if (!Interp.ExecProgram(nazwa_plik_wykonawczy.c_str())) return 1;
+
+  std::cout << "\n\n\n\nKoniec programu\n\n\n\n";
   
 
   return 0;

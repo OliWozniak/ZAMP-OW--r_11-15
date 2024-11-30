@@ -12,6 +12,10 @@
 
 #include "AbstractScene.hh"
 #include "AbstractComChannel.hh"
+#include "ComChannel.hh"
+
+#include <sstream>
+
 
 
  /*!
@@ -52,9 +56,7 @@
       * \retval true - operacja powiodła się,
       * \retval false - w przypadku przeciwnym.
       */
-     virtual bool ExecCmd(AbstractScene      &rScn, 
-                          const char         *sMobObjName,
-                          AbstractComChannel &rComChann) = 0;
+     virtual bool ExecCmd(AbstractScene &rScn, ComChannel &rComChann) = 0;
      /*!
       * \brief Czyta wartości parametrów danego polecenia.
       *

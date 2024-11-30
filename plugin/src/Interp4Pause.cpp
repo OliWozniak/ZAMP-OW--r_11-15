@@ -56,14 +56,9 @@ const char* Interp4Pause::GetCmdName() const
 /*!
  *
  */
-bool Interp4Pause::ExecCmd( AbstractScene      &rScn, 
-                           const char         *sMobObjName,
-			   AbstractComChannel &rComChann
-			 )
+bool Interp4Pause::ExecCmd( AbstractScene      &rScn, ComChannel &rComChann)
 {
-  /*
-   *  Tu trzeba napisać odpowiedni kod.
-   */
+  usleep(_Duration_mS*1000);
   return true;
 }
 
@@ -74,9 +69,7 @@ bool Interp4Pause::ExecCmd( AbstractScene      &rScn,
 bool Interp4Pause::ReadParams(std::istream& Strm_CmdsList)
 {
   Strm_CmdsList >> _Duration_mS;
-  /*
-   *  Tu trzeba napisać odpowiedni kod.
-   */
+    std::cout << "Zakończono czytać parasmetry PAUSE\n";
   return true;
 }
 

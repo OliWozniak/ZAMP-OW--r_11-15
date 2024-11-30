@@ -16,7 +16,7 @@ using namespace std;
  */
 XMLInterp4Config::XMLInterp4Config(Configuration &rConfig)
 {
-  _Config = rConfig;
+  (*this)._Config = &rConfig;
 }
 
 
@@ -74,7 +74,7 @@ void XMLInterp4Config::ProcessLibAttrs(const xercesc::Attributes  &rAttrs)
 
   cout << "  Nazwa funkcji: " << sLibName << endl;
 
-  (*this)._Config.addLib(sLibName);
+  this->_Config->addLib(sLibName);
     
  xercesc::XMLString::release(&sParamName);
  xercesc::XMLString::release(&cLibName);
@@ -117,28 +117,6 @@ void XMLInterp4Config::ProcessCubeAttrs(const xercesc::Attributes  &rAttrs)
     std::cout << "\t" << xercesc::XMLString::transcode(rAttrs.getQName(i)) << ":\t"\
     << xercesc::XMLString::transcode(rAttrs.getValue(i)) << std::endl;
   }
-  
-
- //-----------------------------------------------------------------------------
- // Przykład czytania wartości parametrów
- // Ten przykład jest zrobiony "na piechotę" wykorzystując osobne zmienne.
- // Skala powinna być wektorem. Czytanie powinno być rezlizowane z wykorzysaniem
- // wektorów, np.
- //
- //
- // istringstream IStrm;
- // IStrm.str(sValue_Scale);
- // Vector3D  Scale;
- //
- // IStrm >> Scale;
- //
-
- /*Cuboid(std::string name,\
-    Vector3D shift,\
-    Vector3D scale,\
-    Vector3D rotation,\
-    Vector3D transition,\
-    Vector3D color);*/
 
   std::istringstream   IStrm;
 
@@ -183,10 +161,13 @@ void XMLInterp4Config::ProcessCubeAttrs(const xercesc::Attributes  &rAttrs)
 
   std::cout << "Wczytane parametry:\t" << obj.get()->GetParams() << std::endl;
 
-  (*this)._Config.addObject(obj);
+  (*this)._Config->addObject(obj);
  xercesc::XMLString::release(&sValue_Name);
  xercesc::XMLString::release(&sValue_Scale);
  xercesc::XMLString::release(&sValue_RGB);
+ xercesc::XMLString::release(&sValue_RotXYZ_deg);
+ xercesc::XMLString::release(&sValue_Shift);
+ xercesc::XMLString::release(&sValue_Trans_m);
 }
 
 

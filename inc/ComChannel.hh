@@ -15,12 +15,19 @@ class ComChannel// : AbstractComChannel
 {
 private:
     int _Socket4Sending;
+    std::mutex _Access;
 public:
     ComChannel();
     ~ComChannel();
 
+    // void Init(int Socket);
+    // int GetSocket() const;
+    // //std::mutex &UseGuard();
+
     bool open_connection();
     int send(const char *sMesg);
+    void LockAccess();
+    void UnlockAccess();
 };
 
 

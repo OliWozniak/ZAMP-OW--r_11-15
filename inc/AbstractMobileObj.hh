@@ -104,6 +104,9 @@
 
         virtual std::string GetParams() const = 0;
 
+        virtual void LockAccess() = 0;
+        virtual void UnlockAccess() = 0;
+
     };
 
 

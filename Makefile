@@ -15,7 +15,7 @@ __plugin__:
 	cd plugin; make
 
 CPPFLAGS = -Wall -g -pedantic -std=c++17 -Iinc
-LDFLAGS = -Wall -lxerces-c -ldl  
+LDFLAGS = -Wall -lxerces-c -ldl -pthread 
 
 interp: obj/main.o obj/LibInterface.o obj/xmlinterp.o obj/Scene.o obj/ProgramInterpreter.o\
  obj/Set4LibInterfaces.o obj/ComChannel.o obj/Cuboid.o obj/Configuration.o

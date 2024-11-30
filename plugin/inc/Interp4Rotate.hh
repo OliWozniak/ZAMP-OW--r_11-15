@@ -8,6 +8,8 @@
 
 #include "AbstractInterp4Command.hh"
 
+#define N 100
+
 /*!
  * \file
  * \brief Definicja klasy Interp4Rotate
@@ -63,9 +65,7 @@ class Interp4Rotate: public AbstractInterp4Command {
    * \retval true - operacja powiodła się,
    * \retval false - w przypadku przeciwnym.
    */
-  virtual bool ExecCmd( AbstractScene      &rScn, 
-                        const char         *sMobObjName,
-                        AbstractComChannel &rComChann ) override;
+  virtual bool ExecCmd( AbstractScene  &rScn, ComChannel &rComChann ) override;
   /*!
    * \brief Czyta wartości parametrów danego polecenia
    */

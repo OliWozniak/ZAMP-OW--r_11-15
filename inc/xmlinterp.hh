@@ -84,10 +84,9 @@ class XMLInterp4Config : public xercesc::DefaultHandler {
      */
     void ProcessCubeAttrs(const xercesc::Attributes&   rAttrs); 
 
-    Configuration& GetConfig() { return (*this)._Config; }
   private:
   
-  Configuration _Config;
+  Configuration *_Config;
 };
 
 #endif

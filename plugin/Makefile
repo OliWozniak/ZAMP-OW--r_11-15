@@ -17,8 +17,8 @@ __lines_for_space__:
 	@echo
 	@echo
 
-../libs/libInterp4Move.so: obj/Interp4Move.o
-	g++ ${LDFLAGS} -o ../libs/libInterp4Move.so obj/Interp4Move.o
+../libs/libInterp4Move.so: obj/Interp4Move.o obj/ComChannel.o
+	g++ ${LDFLAGS} -o ../libs/libInterp4Move.so obj/Interp4Move.o obj/ComChannel.o
 	@echo
 	@echo "  Wtyczka dla polecenia 'Move' zostala utworzona."
 	@echo
@@ -30,8 +30,8 @@ obj/Interp4Move.o: src/Interp4Move.cpp ../inc/AbstractInterp4Command.hh\
 	g++ -c ${CPPFLAGS} -o obj/Interp4Move.o src/Interp4Move.cpp
 
 
-../libs/libInterp4Rotate.so: obj/Interp4Rotate.o
-	g++ ${LDFLAGS} -o ../libs/libInterp4Rotate.so obj/Interp4Rotate.o
+../libs/libInterp4Rotate.so: obj/Interp4Rotate.o obj/ComChannel.o
+	g++ ${LDFLAGS} -o ../libs/libInterp4Rotate.so obj/Interp4Rotate.o obj/ComChannel.o
 	@echo
 	@echo "  Wtyczka dla polecenia 'Rotate' zostala utworzona."
 	@echo
@@ -43,8 +43,8 @@ obj/Interp4Rotate.o: src/Interp4Rotate.cpp ../inc/AbstractInterp4Command.hh\
 	g++ -c ${CPPFLAGS} -o obj/Interp4Rotate.o src/Interp4Rotate.cpp
 
 
-../libs/libInterp4Pause.so: obj/Interp4Pause.o
-	g++ ${LDFLAGS} -o ../libs/libInterp4Pause.so obj/Interp4Pause.o
+../libs/libInterp4Pause.so: obj/Interp4Pause.o obj/ComChannel.o
+	g++ ${LDFLAGS} -o ../libs/libInterp4Pause.so obj/Interp4Pause.o obj/ComChannel.o
 	@echo
 	@echo "  Wtyczka dla polecenia 'Pause' zostala utworzona."
 	@echo
@@ -54,8 +54,8 @@ obj/Interp4Pause.o: src/Interp4Pause.cpp ../inc/AbstractInterp4Command.hh\
                    inc/Interp4Pause.hh 
 	g++ -c ${CPPFLAGS} -o obj/Interp4Pause.o src/Interp4Pause.cpp
 
-../libs/libInterp4Set.so: obj/Interp4Set.o
-	g++ ${LDFLAGS} -o ../libs/libInterp4Set.so obj/Interp4Set.o
+../libs/libInterp4Set.so: obj/Interp4Set.o obj/ComChannel.o
+	g++ ${LDFLAGS} -o ../libs/libInterp4Set.so obj/Interp4Set.o obj/ComChannel.o
 	@echo
 	@echo "  Wtyczka dla polecenia 'Set' zostala utworzona."
 	@echo
@@ -64,6 +64,10 @@ obj/Interp4Set.o: src/Interp4Set.cpp ../inc/AbstractInterp4Command.hh\
                    ../inc/AbstractScene.hh ../inc/AbstractComChannel.hh\
                    inc/Interp4Set.hh 
 	g++ -c ${CPPFLAGS} -o obj/Interp4Set.o src/Interp4Set.cpp
+
+obj/ComChannel.o: ../src/ComChannel.cpp ../inc/ComChannel.hh 
+	mkdir -p obj  
+	g++ -c ${CPPFLAGS} -o obj/ComChannel.o ../src/ComChannel.cpp
 
 clean:
 	rm -f obj/*

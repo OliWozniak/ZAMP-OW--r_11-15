@@ -8,6 +8,7 @@
 #include "xmlinterp.hh"
 #include "vector"
 #include <fstream>
+#include <thread>
 
 
 #include <xercesc/sax2/SAX2XMLReader.hpp>
@@ -21,12 +22,13 @@ private:
     Scene _Scn;
     Set4LibInterfaces _LibManager;
     ComChannel _Chann2Serv;
+    void Execute_commands(std::list<std::shared_ptr<AbstractInterp4Command>>& tasks);
 
 public:
     ProgramInterpreter(/* args */);
     ~ProgramInterpreter();
 
-    bool Read_XML_Config(const char* FileName_Conf, Configuration &rConfig);
+    bool Read_XML_Config(const char* FileName_Conf);
     bool ExecProgram(const char* FileName_Prog);
 };
 

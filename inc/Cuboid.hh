@@ -3,6 +3,8 @@
 
 #include "AbstractMobileObj.hh"
 #include <sstream>
+#include <mutex>
+
 
 class Cuboid : public AbstractMobileObj
 {
@@ -13,6 +15,8 @@ private:
     Vector3D _Rotation;
     Vector3D _Transition;
     Vector3D _Color;
+
+    std::mutex access;
     
 public:
     Cuboid(std::string name,\
@@ -34,6 +38,9 @@ public:
     void SetName(const char* sName);
     const std::string & GetName() const;
     std::string GetParams() const;
+
+    void LockAccess();
+    void UnlockAccess();
 };
 
 
