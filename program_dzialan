@@ -3,11 +3,18 @@
  *  Przykladowy zestaw polecen
  */
 Begin_Parallel_Actions
-  Pause 1000
 //   Set   Korpus 2 0 30 0 0 0      // Polozenie i orientacja obiektu A 
 //   Rotate Korpus OX ROTATE_SPEED 40
-  Pause  1000                  /* Zawieszenie na 1 sek. */
   Move   Korpus  10 10
+  Rotate Korpus.Macka1 OZ 30 40
+  Rotate Korpus.Macka2 OX 30 40
+  Rotate Korpus.Macka3 OY 30 40
+  Rotate Korpus.Macka4 OZ 30 40
+  Rotate Korpus.Macka5 OY 30 40
+  Rotate Korpus.Macka6 OX 30 40
+  Rotate Korpus.Macka7 OZ 30 40
+  Rotate Korpus.Macka8 OY 30 40
+
 End_Parallel_Actions
   Rotate Korpus OZ ROTATE_SPEED 60 /* Gdyby Rotate i Move wykonywane byloby */
   Move   Korpus 10 20              /* jednoczesnie, to powodowaloby to      */

@@ -8,7 +8,7 @@ obj:
 	mkdir obj
 
 CPPFLAGS=-Wall -fPIC -pedantic -std=c++17 -Iinc -I../inc
-LDFLAGS=-Wall -shared
+LDFLAGS=-Wall -shared -fPIC
 
 __lines_for_space__:
 	@echo

@@ -12,16 +12,16 @@ __lines_for_space__:
 	@echo
 
 __plugin__:
-	cd plugin; make
+	cd plugin; make cleanall; make
 
 CPPFLAGS = -Wall -g -pedantic -std=c++17 -Iinc
 LDFLAGS = -Wall -lxerces-c -ldl -pthread 
 
 interp: obj/main.o obj/LibInterface.o obj/xmlinterp.o obj/Scene.o obj/ProgramInterpreter.o\
- obj/Set4LibInterfaces.o obj/ComChannel.o obj/Cuboid.o obj/Configuration.o
+ obj/Set4LibInterfaces.o plugin/obj/ComChannel.o obj/Cuboid.o obj/Configuration.o
 
 	g++ -o interp obj/main.o obj/LibInterface.o obj/xmlinterp.o obj/Scene.o obj/ProgramInterpreter.o\
-	 obj/Set4LibInterfaces.o obj/ComChannel.o obj/Cuboid.o obj/Configuration.o $(LDFLAGS)
+	 obj/Set4LibInterfaces.o plugin/obj/ComChannel.o obj/Cuboid.o obj/Configuration.o $(LDFLAGS)
 
 obj/main.o: src/main.cpp inc/AbstractInterp4Command.hh inc/AbstractScene.hh \
             inc/AbstractComChannel.hh inc/LibInterface.hh inc/xmlinterp.hh \
@@ -41,9 +41,9 @@ obj/xmlinterp.o: src/xmlinterp.cpp inc/xmlinterp.hh
 	mkdir -p obj  
 	g++ -c ${CPPFLAGS} -o obj/xmlinterp.o src/xmlinterp.cpp
 
-obj/ComChannel.o: src/ComChannel.cpp inc/ComChannel.hh 
+plugin/obj/ComChannel.o: src/ComChannel.cpp inc/ComChannel.hh 
 	mkdir -p obj  
-	g++ -c ${CPPFLAGS} -o obj/ComChannel.o src/ComChannel.cpp
+	g++ -c ${CPPFLAGS} -o plugin/obj/ComChannel.o src/ComChannel.cpp
 
 obj/Cuboid.o: src/Cuboid.cpp inc/Cuboid.hh 
 	mkdir -p obj  
