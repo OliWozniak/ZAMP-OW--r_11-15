@@ -94,21 +94,13 @@ bool Interp4Move::ExecCmd( AbstractScene &rScn,ComChannel &rComChann)
         newPos[2]=delta_z_m+startPos[2];
         wObMob->LockAccess();
         wObMob->SetPosition_m(newPos);
-          // ComChannel interface(rComChann);
-
-          // send to server
-
-          /*if(!interface.UpdateObj())
-          {
-            std::cerr<<"Failed to update object: "<<wObMob->GetName()<<std::endl;
-            wObMob->UnlockAccess();
-
-            return false;
-          }*/
         {
          std::string message;
          message = "UpdateObj ";
-         message += wObMob->GetParams();
+         message += "Name=" + wObMob->GetName();
+         std::ostringstream position;
+         position << wObMob->GetPositoin_m();
+         message += " Trans_m=" + position.str() +"\n";
          rComChann.LockAccess();
          rComChann.send(message.c_str());
          rComChann.UnlockAccess();
@@ -122,7 +114,6 @@ bool Interp4Move::ExecCmd( AbstractScene &rScn,ComChannel &rComChann)
 
   return true;
 }
-
 
 /*!
  *

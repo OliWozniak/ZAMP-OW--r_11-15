@@ -12,8 +12,8 @@ __lines_for_space__:
 	@echo
 
 __plugin__:
-	cd plugin; make cleanall; make
-
+	cd plugin; make
+	
 CPPFLAGS = -Wall -g -pedantic -std=c++17 -Iinc
 LDFLAGS = -Wall -lxerces-c -ldl -pthread 
 

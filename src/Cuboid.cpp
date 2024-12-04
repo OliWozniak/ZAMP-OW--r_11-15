@@ -47,7 +47,7 @@ void Cuboid::SetAng_Pitch_deg(double Ang_Pitch_deg)
 
 void Cuboid::SetAng_Yaw_deg(double Ang_Yaw_deg)
 {
-    (*this)._Rotation[0] = Ang_Yaw_deg;
+    (*this)._Rotation[2] = Ang_Yaw_deg;
 }
 
 const Vector3D &Cuboid::GetPositoin_m() const

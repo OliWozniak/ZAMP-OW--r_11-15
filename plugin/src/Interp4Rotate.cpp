@@ -78,11 +78,15 @@ bool Interp4Rotate::ExecCmd(AbstractScene &rScn, ComChannel &rComChann)
       wObMob->SetAng_Pitch_deg(delta_deg + start);
 
       {
-        std::string message;
-        message = "UpdateObj ";
-        message += wObMob->GetParams();
+        std::ostringstream message;
+        message << "UpdateObj ";
+        message << "Name=" << wObMob->GetName();
+        message << " RotXYZ_deg=";
+        message << "(" << wObMob->GetAng_Pitch_deg() << ",";
+        message << wObMob->GetAng_Roll_deg() << ",";
+        message << wObMob->GetAng_Yaw_deg() << ")\n";
         rComChann.LockAccess();
-        rComChann.send(message.c_str());
+        rComChann.send(message.str().c_str());
         rComChann.UnlockAccess();
       }
       wObMob->UnlockAccess();
@@ -104,11 +108,15 @@ bool Interp4Rotate::ExecCmd(AbstractScene &rScn, ComChannel &rComChann)
       wObMob->SetAng_Roll_deg(delta_deg + start);
 
       {
-        std::string message;
-        message = "UpdateObj ";
-        message += wObMob->GetParams();
+        std::ostringstream message;
+        message << "UpdateObj ";
+        message << "Name=" << wObMob->GetName();
+        message << " RotXYZ_deg=";
+        message << "(" << wObMob->GetAng_Pitch_deg() << ",";
+        message << wObMob->GetAng_Roll_deg() << ",";
+        message << wObMob->GetAng_Yaw_deg() << ")\n";
         rComChann.LockAccess();
-        rComChann.send(message.c_str());
+        rComChann.send(message.str().c_str());
         rComChann.UnlockAccess();
       }
 
@@ -131,11 +139,15 @@ bool Interp4Rotate::ExecCmd(AbstractScene &rScn, ComChannel &rComChann)
       wObMob->SetAng_Yaw_deg(delta_deg + start);
 
       {
-        std::string message;
-        message = "UpdateObj ";
-        message += wObMob->GetParams();
+        std::ostringstream message;
+        message << "UpdateObj ";
+        message << "Name=" << wObMob->GetName();
+        message << " RotXYZ_deg=";
+        message << "(" << wObMob->GetAng_Pitch_deg() << ",";
+        message << wObMob->GetAng_Roll_deg() << ",";
+        message << wObMob->GetAng_Yaw_deg() << ")\n";
         rComChann.LockAccess();
-        rComChann.send(message.c_str());
+        rComChann.send(message.str().c_str());
         rComChann.UnlockAccess();
       }
 

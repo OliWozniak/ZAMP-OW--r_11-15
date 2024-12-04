@@ -79,7 +79,7 @@ bool Interp4Set::ExecCmd(AbstractScene &rScn, ComChannel &rComChann)
   {
     std::string message;
     message = "UpdateObj ";
-    message += wObMob->GetParams();
+    message += wObMob->GetParams() + "\n";
     std::cout << message;
     rComChann.LockAccess();
     rComChann.send(message.c_str());

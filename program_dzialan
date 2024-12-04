@@ -1,24 +1,25 @@
-#define ROTATE_SPEED     30
+#define ROTATE_SPEED 10
+#define ANGLE 45
+#define AXIS OX
 /*
  *  Przykladowy zestaw polecen
  */
-Begin_Parallel_Actions
-//   Set   Korpus 2 0 30 0 0 0      // Polozenie i orientacja obiektu A 
-//   Rotate Korpus OX ROTATE_SPEED 40
-  Move   Korpus  10 10
-  Rotate Korpus.Macka1 OZ 30 40
-  Rotate Korpus.Macka2 OX 30 40
-  Rotate Korpus.Macka3 OY 30 40
-  Rotate Korpus.Macka4 OZ 30 40
-  Rotate Korpus.Macka5 OY 30 40
-  Rotate Korpus.Macka6 OX 30 40
-  Rotate Korpus.Macka7 OZ 30 40
-  Rotate Korpus.Macka8 OY 30 40
+Rotate Korpus OZ ROTATE_SPEED 60 /* Gdyby Rotate i Move wykonywane byloby */
+Move   Korpus 1 2              /* jednoczesnie, to powodowaloby to      */
 
+Begin_Parallel_Actions
+  Rotate Korpus OZ ROTATE_SPEED 360
+  Move   Korpus 1 20              /* jednoczesnie, to powodowaloby to      */
+  Rotate Korpus.Macka1.Segment1 AXIS ROTATE_SPEED ANGLE
+  Rotate Korpus.Macka2.Segment1 AXIS ROTATE_SPEED ANGLE
+  Rotate Korpus.Macka3.Segment1 AXIS ROTATE_SPEED ANGLE
+  Rotate Korpus.Macka4.Segment1 AXIS ROTATE_SPEED ANGLE
+  Rotate Korpus.Macka5.Segment1 AXIS ROTATE_SPEED ANGLE
+  Rotate Korpus.Macka6.Segment1 AXIS ROTATE_SPEED ANGLE
+  Rotate Korpus.Macka7.Segment1 AXIS ROTATE_SPEED ANGLE
+  Rotate Korpus.Macka8.Segment1 AXIS ROTATE_SPEED ANGLE
 End_Parallel_Actions
-  Rotate Korpus OZ ROTATE_SPEED 60 /* Gdyby Rotate i Move wykonywane byloby */
-  Move   Korpus 10 20              /* jednoczesnie, to powodowaloby to      */
+Pause 1000
+  // Rotate Korpus OZ ROTATE_SPEED -60 /* Gdyby Rotate i Move wykonywane byloby */
+  // Move   Korpus 10 -20              /* jednoczesnie, to powodowaloby to      */
                                  /* przesuniecie po luku          */
-    Pause 1000
-  Pause 1000
-  Pause 1000
